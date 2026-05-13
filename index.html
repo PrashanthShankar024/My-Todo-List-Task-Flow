@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow • Modern To-Do</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Login / Register Screen -->
+    <div id="auth-screen" class="login-screen">
+        <div class="login-card">
+            <div class="logo">
+                <i class="fas fa-check-double"></i>
+                <h1>TaskFlow</h1>
+            </div>
+            <p class="tagline">Stay organized. Get things done.</p>
+
+            <div class="tab-container">
+                <button onclick="showLogin()" id="login-tab" class="tab-btn active">Login</button>
+                <button onclick="showRegister()" id="register-tab" class="tab-btn">Create Account</button>
+            </div>
+
+            <div id="login-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="login-username" placeholder="Enter username" >
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="Enter password" >
+                </div>
+                <button onclick="login()" class="login-button">Sign In →</button>
+            </div>
+
+            <div id="register-form" style="display:none;">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="reg-name" placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="reg-username" placeholder="Choose username">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="reg-password" placeholder="Create password">
+                </div>
+                <button onclick="register()" class="login-button">Create Account »</button>
+            </div>
+
+            <p class="demo-text">Demo: Any username + password works</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app-screen" class="app-container">
+        <header class="app-header">
+            <div class="logo-section">
+                <i class="fas fa-check-double"></i>
+                <span>TaskFlow</span>
+            </div>
+            <div class="current-time" id="current-time"></div>
+            <div class="user-info">
+                <span>Hello, <strong id="username-display"></strong> </span>
+                <button onclick="logout()" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Navigation Tabs -->
+            <div class="view-tabs">
+                <button onclick="showView('all')" id="tab-all" class="view-tab active">All Tasks</button>
+                <button onclick="showView('pending')" id="tab-pending" class="view-tab">Pending</button>
+                <button onclick="showView('completed')" id="tab-completed" class="view-tab">Completed</button>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-tasks">0</div>
+                    <div class="stat-label">Total Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number pending" id="pending-tasks">0</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number completed" id="completed-tasks">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+            </div>
+
+            <!-- Add Task -->
+            <div class="add-task-card">
+                <input type="text" id="task-title" placeholder="What needs to be done today?" class="task-title-input">
+                <input type="text" id="task-desc" placeholder="Additional notes (optional)" class="task-desc-input">
+                <input type="datetime-local" id="task-due" class="datetime-input">
+                <button onclick="addTask()" class="add-task-btn">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+
+            <!-- Tasks Container -->
+            <div id="all-tasks-section" class="tasks-section">
+                <h3><i class="fas fa-list-ul"></i> All Tasks</h3>
+                <div id="all-list" class="task-list"></div>
+            </div>
+
+            <div id="pending-section" class="tasks-section">
+                <h3><i class="fas fa-list-ul"></i> Pending Tasks</h3>
+                <div id="pending-list" class="task-list"></div>
+            </div>
+
+            <div id="completed-section" class="tasks-section">
+                <h3><i class="fas fa-check-circle"></i> Completed Tasks</h3>
+                <div id="completed-list" class="task-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
